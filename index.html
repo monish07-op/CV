@@ -1,0 +1,1303 @@
+<! DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monish Shivakumar | Data Scientist & ML Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding:  0;
+            box-sizing: border-box;
+        }
+
+        : root {
+            --primary:  #0071e3;
+            --secondary: #6e6e73;
+            --dark: #1d1d1f;
+            --light: #f5f5f7;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            background:  var(--dark);
+            color:  white;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(29, 29, 31, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        . logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--gradient-3);
+            -webkit-background-clip:  text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration:  none;
+            font-size: 14px;
+            font-weight: 500;
+            transition:  color 0.3s ease;
+            position: relative;
+        }
+
+        . nav-links a:: after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height:  2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        . nav-links a: hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 100px 50px;
+        }
+
+        .hero-bg {
+            position:  absolute;
+            top: 0;
+            left: 0;
+            width:  100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0d0d0d 100%);
+        }
+
+        .floating-shapes {
+            position:  absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            width: 600px;
+            height: 600px;
+            background: rgba(102, 126, 234, 0.3);
+            top: -200px;
+            right: -200px;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width:  400px;
+            height: 400px;
+            background: rgba(240, 147, 251, 0.2);
+            bottom: -100px;
+            left: -100px;
+            animation-delay: -5s;
+        }
+
+        .shape-3 {
+            width: 300px;
+            height:  300px;
+            background: rgba(79, 172, 254, 0.25);
+            top: 50%;
+            left:  50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, -50px) rotate(90deg); }
+            50% { transform:  translate(0, -100px) rotate(180deg); }
+            75% { transform:  translate(-50px, -50px) rotate(270deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--glass);
+            border:  1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 14px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #a8a8a8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        . hero-subtitle {
+            font-size:  clamp(20px, 3vw, 32px);
+            font-weight: 300;
+            color: var(--secondary);
+            margin-bottom: 40px;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto 50px;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display:  flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding:  16px 40px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0077ed;
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 113, 227, 0.4);
+        }
+
+        .btn-secondary {
+            background:  transparent;
+            color:  var(--primary);
+            border:  2px solid var(--primary);
+        }
+
+        . btn-secondary:hover {
+            background:  var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* 3D Card */
+        .card-3d {
+            perspective: 1000px;
+            margin-top: 80px;
+        }
+
+        .card-3d-inner {
+            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border:  1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        .card-3d-inner:hover {
+            transform: rotateY(5deg) rotateX(5deg);
+        }
+
+        /* Stats Section */
+        . stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            background: var(--gradient-3);
+            -webkit-background-clip:  text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--secondary);
+            margin-top:  10px;
+        }
+
+        /* Section Styling */
+        section {
+            padding:  120px 50px;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary);
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+
+        /* About Section */
+        . about {
+            background: linear-gradient(180deg, var(--dark) 0%, #0a0a0a 100%);
+        }
+
+        .about-grid {
+            display:  grid;
+            grid-template-columns:  1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image-wrapper {
+            width: 400px;
+            height: 400px;
+            border-radius: 30px;
+            background: var(--gradient-1);
+            display:  flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        . about-image-wrapper::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height:  200%;
+            background: conic-gradient(from 0deg, transparent, var(--primary), transparent 30%);
+            animation:  rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .about-image-inner {
+            width: calc(100% - 8px);
+            height: calc(100% - 8px);
+            background: var(--dark);
+            border-radius: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            z-index: 1;
+        }
+
+        .about-content h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: #888;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .about-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap:  15px;
+            margin-top: 30px;
+        }
+
+        .highlight-tag {
+            padding: 10px 20px;
+            background: rgba(0, 113, 227, 0.2);
+            border:  1px solid var(--primary);
+            border-radius:  50px;
+            font-size: 14px;
+            color: var(--primary);
+        }
+
+        /* Experience Section */
+        . experience {
+            background: #0a0a0a;
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline:: before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background:  linear-gradient(180deg, var(--primary), transparent);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .timeline-item: nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        .timeline-content {
+            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border:  1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            position: relative;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        . timeline-content:hover {
+            transform:  translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 113, 227, 0.2);
+        }
+
+        .timeline-dot {
+            position:  absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: 30px;
+        }
+
+        .timeline-item: nth-child(odd) .timeline-dot {
+            right: -60px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -60px;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--primary);
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .timeline-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-company {
+            color: var(--primary);
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .timeline-description {
+            color: #888;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: var(--dark);
+        }
+
+        .skills-grid {
+            display:  grid;
+            grid-template-columns:  repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-category {
+            background:  linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .skill-category h3 {
+            font-size:  24px;
+            margin-bottom:  20px;
+        }
+
+        .skill-tags {
+            display:  flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        . skill-tag: hover {
+            background: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* Projects Section */
+        . projects {
+            background: #0a0a0a;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background:  linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border:  1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 30px 60px rgba(0, 113, 227, 0.3);
+        }
+
+        . project-image {
+            height: 250px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size:  80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        . project-image::before {
+            content:  '';
+            position:  absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background:  linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .project-card:hover .project-image::before {
+            left: 100%;
+        }
+
+        .project-content {
+            padding:  30px;
+        }
+
+        .project-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            color: #888;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap:  8px;
+        }
+
+        .project-tech span {
+            padding: 5px 12px;
+            background: rgba(0, 113, 227, 0.2);
+            color: var(--primary);
+            border-radius: 15px;
+            font-size: 12px;
+        }
+
+        /* Education Section */
+        . education {
+            background: var(--dark);
+        }
+
+        . education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            max-width:  1200px;
+            margin: 0 auto;
+        }
+
+        . education-card {
+            background:  linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border:  1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .education-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left:  0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-1);
+        }
+
+        .education-degree {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .education-school {
+            color:  var(--primary);
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .education-date {
+            color: var(--secondary);
+            font-size:  14px;
+            margin-bottom: 15px;
+        }
+
+        .education-description {
+            color: #888;
+            font-size:  14px;
+            line-height:  1.7;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(180deg, #0a0a0a 0%, var(--dark) 100%);
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin:  0 auto;
+        }
+
+        .contact-links {
+            display:  flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap:  15px;
+            padding: 20px 40px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border:  1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            text-decoration: none;
+            color: white;
+            transition:  all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 113, 227, 0.2);
+        }
+
+        .contact-link i {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 50px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        footer p {
+            color: var(--secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding:  80px 20px;
+            }
+
+            .hero {
+                padding: 100px 20px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid {
+                grid-template-columns:  1fr;
+                gap: 40px;
+            }
+
+            .about-image-wrapper {
+                width: 280px;
+                height: 280px;
+                margin: 0 auto;
+            }
+
+            .timeline:: before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item: nth-child(even) {
+                padding-left: 60px;
+                padding-right: 0;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 10px;
+                right: auto;
+            }
+
+            .projects-grid,
+            .education-grid {
+                grid-template-columns:  1fr;
+            }
+
+            . skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations on Scroll */
+        . fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity:  1;
+            transform: translateY(0);
+        }
+
+        /* Particle Effect */
+        #particles {
+            position:  fixed;
+            top: 0;
+            left: 0;
+            width:  100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">MS</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">✨ Available for Opportunities</div>
+            <h1 class="hero-title">Monish Shivakumar</h1>
+            <h2 class="hero-subtitle">Data Scientist & ML Engineer</h2>
+            <p class="hero-description">
+                MSc Data Science student at University College Dublin, transforming complex data into actionable insights through machine learning, statistical analysis, and innovative AI solutions.
+            </p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                <a href="#projects" class="btn btn-secondary">View Projects</a>
+            </div>
+            
+            <div class="card-3d">
+                <div class="card-3d-inner">
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">2+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Technologies</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">MSc</div>
+                            <div class="stat-label">Data Science</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-image fade-in">
+                <div class="about-image-wrapper">
+                    <div class="about-image-inner">👨‍💻</div>
+                </div>
+            </div>
+            <div class="about-content fade-in">
+                <h2 class="section-title" style="text-align: left;">About Me</h2>
+                <h3>Passionate about Data & AI</h3>
+                <p>
+                    I'm a dedicated Data Science graduate student at University College Dublin with a strong foundation in machine learning, statistical modeling, and data engineering. My journey in data science began with a Bachelor's degree in Computer Science from SRM Institute of Science and Technology. 
+                </p>
+                <p>
+                    With hands-on experience at leading companies like Tata Consultancy Services and LTIMindtree, I've developed expertise in building scalable data pipelines, implementing ML models, and delivering data-driven solutions that create real business impact.
+                </p>
+                <div class="about-highlights">
+                    <span class="highlight-tag">Machine Learning</span>
+                    <span class="highlight-tag">Deep Learning</span>
+                    <span class="highlight-tag">Data Engineering</span>
+                    <span class="highlight-tag">Python</span>
+                    <span class="highlight-tag">SQL</span>
+                    <span class="highlight-tag">Cloud Computing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <h2 class="section-title fade-in">Work Experience</h2>
+        <p class="section-subtitle fade-in">My professional journey in data science and engineering</p>
+        
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date">Sep 2024 - Present</span>
+                    <h3 class="timeline-title">Academic Tutor</h3>
+                    <p class="timeline-company">University College Dublin</p>
+                    <p class="timeline-description">
+                        Providing academic support to students in data science and programming courses. Mentoring students in Python, statistics, and machine learning fundamentals while developing curriculum materials for enhanced learning outcomes.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date">Oct 2022 - Aug 2024</span>
+                    <h3 class="timeline-title">Data Engineer</h3>
+                    <p class="timeline-company">Tata Consultancy Services (TCS)</p>
+                    <p class="timeline-description">
+                        Designed and implemented robust ETL pipelines using Python and SQL, processing millions of records daily.  Developed data quality frameworks and automated reporting solutions.  Collaborated with cross-functional teams to deliver data-driven insights for Fortune 500 clients.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date">Jan 2022 - Jun 2022</span>
+                    <h3 class="timeline-title">Data Analyst Intern</h3>
+                    <p class="timeline-company">LTIMindtree</p>
+                    <p class="timeline-description">
+                        Analyzed large datasets to extract actionable business insights.  Created interactive dashboards using Power BI and Tableau.  Implemented statistical models for trend analysis and forecasting, contributing to strategic decision-making processes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <h2 class="section-title fade-in">Technical Skills</h2>
+        <p class="section-subtitle fade-in">Technologies and tools I work with</p>
+        
+        <div class="skills-grid">
+            <div class="skill-category fade-in">
+                <div class="skill-icon">🐍</div>
+                <h3>Programming Languages</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">R</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Scala</span>
+                </div>
+            </div>
+            
+            <div class="skill-category fade-in">
+                <div class="skill-icon">🤖</div>
+                <h3>Machine Learning & AI</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">Scikit-learn</span>
+                    <span class="skill-tag">Keras</span>
+                    <span class="skill-tag">NLP</span>
+                    <span class="skill-tag">Computer Vision</span>
+                </div>
+            </div>
+            
+            <div class="skill-category fade-in">
+                <div class="skill-icon">📊</div>
+                <h3>Data Engineering</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Apache Spark</span>
+                    <span class="skill-tag">Hadoop</span>
+                    <span class="skill-tag">Airflow</span>
+                    <span class="skill-tag">Kafka</span>
+                    <span class="skill-tag">ETL</span>
+                    <span class="skill-tag">Data Pipelines</span>
+                </div>
+            </div>
+            
+            <div class="skill-category fade-in">
+                <div class="skill-icon">☁️</div>
+                <h3>Cloud & DevOps</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Azure</span>
+                    <span class="skill-tag">GCP</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">Git</span>
+                </div>
+            </div>
+            
+            <div class="skill-category fade-in">
+                <div class="skill-icon">📈</div>
+                <h3>Data Visualization</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Tableau</span>
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">Matplotlib</span>
+                    <span class="skill-tag">Seaborn</span>
+                    <span class="skill-tag">Plotly</span>
+                    <span class="skill-tag">D3.js</span>
+                </div>
+            </div>
+            
+            <div class="skill-category fade-in">
+                <div class="skill-icon">🗄️</div>
+                <h3>Databases</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">Redis</span>
+                    <span class="skill-tag">Snowflake</span>
+                    <span class="skill-tag">BigQuery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <h2 class="section-title fade-in">Featured Projects</h2>
+        <p class="section-subtitle fade-in">Showcasing my work in data science and machine learning</p>
+        
+        <div class="projects-grid">
+            <div class="project-card fade-in">
+                <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    🔮
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Predictive Analytics Platform</h3>
+                    <p class="project-description">
+                        Built an end-to-end machine learning pipeline for customer churn prediction, achieving 92% accuracy.  Implemented feature engineering, model selection, and automated retraining workflows. 
+                    </p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>Scikit-learn</span>
+                        <span>AWS</span>
+                        <span>Docker</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card fade-in">
+                <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    📊
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Real-time Data Pipeline</h3>
+                    <p class="project-description">
+                        Designed a streaming data architecture processing 1M+ events/day.  Implemented real-time analytics dashboard with sub-second latency for business monitoring.
+                    </p>
+                    <div class="project-tech">
+                        <span>Apache Kafka</span>
+                        <span>Spark Streaming</span>
+                        <span>Elasticsearch</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card fade-in">
+                <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    🧠
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">NLP Sentiment Analyzer</h3>
+                    <p class="project-description">
+                        Developed a deep learning model for sentiment analysis on social media data.  Used transformer architecture to analyze customer feedback with 88% accuracy.
+                    </p>
+                    <div class="project-tech">
+                        <span>PyTorch</span>
+                        <span>Transformers</span>
+                        <span>BERT</span>
+                        <span>FastAPI</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card fade-in">
+                <div class="project-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                    📱
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Computer Vision Application</h3>
+                    <p class="project-description">
+                        Created an image classification system for quality control in manufacturing.  Reduced manual inspection time by 70% with CNN-based defect detection.
+                    </p>
+                    <div class="project-tech">
+                        <span>TensorFlow</span>
+                        <span>OpenCV</span>
+                        <span>Flask</span>
+                        <span>GCP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education" id="education">
+        <h2 class="section-title fade-in">Education</h2>
+        <p class="section-subtitle fade-in">My academic background and qualifications</p>
+        
+        <div class="education-grid">
+            <div class="education-card fade-in">
+                <h3 class="education-degree">MSc in Data Science</h3>
+                <p class="education-school">University College Dublin (UCD)</p>
+                <p class="education-date">Sep 2024 - Aug 2025 (Expected)</p>
+                <p class="education-description">
+                    Pursuing advanced studies in machine learning, statistical modeling, big data analytics, and AI applications. Focusing on research in deep learning and natural language processing.  Active member of the Data Science Society. 
+                </p>
+            </div>
+            
+            <div class="education-card fade-in">
+                <h3 class="education-degree">B.Tech in Computer Science</h3>
+                <p class="education-school">SRM Institute of Science and Technology</p>
+                <p class="education-date">Jul 2018 - May 2022</p>
+                <p class="education-description">
+                    Graduated with strong foundation in computer science fundamentals, algorithms, data structures, and software engineering.  Specialized coursework in database management, machine learning, and cloud computing.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <h2 class="section-title fade-in">Let's Connect</h2>
+            <p class="section-subtitle fade-in">
+                I'm always open to discussing new opportunities, interesting projects, or just having a chat about data science and technology.
+            </p>
+            
+            <div class="contact-links fade-in">
+                <a href="mailto:monish. shivakumar@ucdconnect.ie" class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>monish.shivakumar@ucdconnect.ie</span>
+                </a>
+                <a href="https://www.linkedin.com/in/-monish-s/" target="_blank" class="contact-link">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn Profile</span>
+                </a>
+                <a href="https://github.com/monish07-op" target="_blank" class="contact-link">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Monish Shivakumar.  Crafted with ❤️ and lots of ☕</p>
+    </footer>
+
+    <!-- JavaScript for animations -->
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry. target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this. getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block:  'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect on scroll
+        window. addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.1;
+                shape. style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // 3D card tilt effect
+        const card = document.querySelector('. card-3d-inner');
+        if (card) {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateX(0) rotateY(0)';
+            });
+        }
+
+        // Typing effect for hero subtitle
+        const subtitle = document.querySelector('.hero-subtitle');
+        const titles = ['Data Scientist', 'ML Engineer', 'Data Engineer', 'AI Enthusiast'];
+        let titleIndex = 0;
+
+        function typeTitle() {
+            const currentTitle = titles[titleIndex];
+            subtitle.textContent = currentTitle;
+            titleIndex = (titleIndex + 1) % titles.length;
+        }
+
+        setInterval(typeTitle, 3000);
+
+        // Nav background on scroll
+        window. addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(29, 29, 31, 0.95)';
+            } else {
+                nav.style.background = 'rgba(29, 29, 31, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>
