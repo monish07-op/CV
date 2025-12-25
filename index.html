@@ -18,15 +18,36 @@ body {font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;b
 /* Cursor follower */
 .cursor-glow {position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,113,227,0.08),transparent 70%);pointer-events:none;z-index:9999;transition:transform 0.3s ease-out;transform:translate(-50%,-50%)}
 
-nav {position:fixed;top:0;width:100%;padding:20px 50px;display:flex;justify-content:space-between;align-items:center;z-index:1000;backdrop-filter:blur(20px);background:rgba(0,0,0,0.85);border-bottom:1px solid var(--border);transition:all 0.5s cubic-bezier(0.4,0,0.2,1)}
+/* Floating icons background */
+.floating-icons {position:fixed;width:100%;height:100%;pointer-events:none;z-index:1;opacity:0.05}
+.float-icon {position:absolute;font-size:40px;animation:floatIcon 25s infinite ease-in-out}
+.float-icon:nth-child(1) {top:10%;left:5%;animation-delay:0s}
+.float-icon:nth-child(2) {top:60%;left:10%;animation-delay:3s}
+.float-icon:nth-child(3) {top:30%;right:15%;animation-delay:6s}
+.float-icon:nth-child(4) {bottom:20%;right:5%;animation-delay:9s}
+.float-icon:nth-child(5) {top:70%;left:80%;animation-delay:12s}
+@keyframes floatIcon {0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-50px) rotate(180deg)}}
+
+nav {position:fixed;top:0;width:100%;padding:20px 50px;display:flex;justify-content:space-between;align-items:center;z-index:1000;backdrop-filter:blur(20px);background:rgba(0,0,0,0.85);border-bottom:1px solid var(--border);transition:all 0.5s cubic-bezier(0.4,0,0.2,1);animation:slideDown 0.8s cubic-bezier(0.4,0,0.2,1)}
+@keyframes slideDown {from{transform:translateY(-100%)}to{transform:translateY(0)}}
 nav.scrolled {padding:15px 50px;background:rgba(0,0,0,0.95);box-shadow:0 10px 40px rgba(0,0,0,0.3)}
-.logo {font-size:24px;font-weight:700;color:white;transition:all 0.3s;cursor:pointer;position:relative}
+.logo {font-size:24px;font-weight:700;color:white;transition:all 0.3s;cursor:pointer;position:relative;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse {0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 .logo::after {content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--primary);transition:width 0.3s}
 .logo:hover::after {width:100%}
-.logo:hover {transform:scale(1.05);color:var(--primary)}
+.logo:hover {color:var(--primary);animation:none}
 .nav-links {display:flex;gap:40px;list-style:none}
+.nav-links li {animation:fadeInDown 0.8s cubic-bezier(0.4,0,0.2,1) backwards}
+.nav-links li:nth-child(1) {animation-delay:0.1s}
+.nav-links li:nth-child(2) {animation-delay:0.2s}
+.nav-links li:nth-child(3) {animation-delay:0.3s}
+.nav-links li:nth-child(4) {animation-delay:0.4s}
+.nav-links li:nth-child(5) {animation-delay:0.5s}
+@keyframes fadeInDown {from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
 .nav-links a {color:#f5f5f7;text-decoration:none;font-size:14px;font-weight:400;transition:all 0.4s cubic-bezier(0.4,0,0.2,1);position:relative;padding:5px 0}
 .nav-links a::after {content:'';position:absolute;bottom:-5px;left:50%;width:0;height:2px;background:var(--primary);transition:all 0.4s cubic-bezier(0.4,0,0.2,1);transform:translateX(-50%)}
+.nav-links a::before {content:'';position:absolute;inset:-5px;background:rgba(0,113,227,0.1);border-radius:8px;opacity:0;transition:opacity 0.3s}
+.nav-links a:hover::before {opacity:1}
 .nav-links a:hover::after {width:100%}
 .nav-links a:hover {color:var(--primary);transform:translateY(-2px)}
 
@@ -66,12 +87,17 @@ nav.scrolled {padding:15px 50px;background:rgba(0,0,0,0.95);box-shadow:0 10px 40
 .line:nth-child(3) {left:80%;animation-delay:4s}
 @keyframes lineMove {0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
 
+/* Dots pattern */
+.dots-pattern {position:absolute;width:100%;height:100%;opacity:0.08;background-image:radial-gradient(circle,var(--primary) 1px,transparent 1px);background-size:30px 30px;animation:dotsMove 30s linear infinite}
+@keyframes dotsMove {from{background-position:0 0}to{background-position:30px 30px}}
+
 .hero-content {text-align:center;max-width:900px;z-index:10;position:relative;animation:fadeInUp 1.2s cubic-bezier(0.4,0,0.2,1)}
 @keyframes fadeInUp {from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 
-.hero-badge {display:inline-block;padding:8px 20px;background:rgba(0,113,227,0.1);border:1px solid rgba(0,113,227,0.3);border-radius:50px;font-size:13px;margin-bottom:30px;color:var(--primary);font-weight:500;animation:fadeInUp 1.2s cubic-bezier(0.4,0,0.2,1) 0.2s backwards;transition:all 0.3s}
-.hero-badge:hover {background:rgba(0,113,227,0.15);transform:scale(1.05)}
-.hero-title {font-size:clamp(48px,8vw,72px);font-weight:700;line-height:1.1;margin-bottom:20px;color:white;animation:fadeInUp 1.2s cubic-bezier(0.4,0,0.2,1) 0.4s backwards;background:linear-gradient(135deg,#fff,#a8a8a8,#fff);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:fadeInUp 1.2s cubic-bezier(0.4,0,0.2,1) 0.4s backwards,gradientShift 8s ease infinite}
+.hero-badge {display:inline-block;padding:8px 20px;background:rgba(0,113,227,0.1);border:1px solid rgba(0,113,227,0.3);border-radius:50px;font-size:13px;margin-bottom:30px;color:var(--primary);font-weight:500;animation:fadeInUp 1.2s cubic-bezier(0.4,0,0.2,1) 0.2s backwards,float 3s ease-in-out infinite;transition:all 0.3s}
+@keyframes float {0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero-badge:hover {background:rgba(0,113,227,0.15);transform:scale(1.05);box-shadow:0 10px 30px rgba(0,113,227,0.3)}
+.hero-title {font-size:clamp(48px,8vw,72px);font-weight:700;line-height:1.1;margin-bottom:20px;color:white;animation:fadeInUp 1.2s cubic-bezier(0.4,0,0.2,1) 0.4s backwards,gradientShift 8s ease infinite;background:linear-gradient(135deg,#fff,#a8a8a8,#fff);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 @keyframes gradientShift {0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 .hero-subtitle {font-size:clamp(18px,3vw,22px);font-weight:400;color:var(--secondary);margin-bottom:40px;line-height:1.5;animation:fadeInUp 1.2s cubic-bezier(0.4,0,0.2,1) 0.6s backwards}
 .cta-buttons {display:flex;gap:15px;justify-content:center;flex-wrap:wrap;animation:fadeInUp 1.2s cubic-bezier(0.4,0,0.2,1) 0.8s backwards}
@@ -79,23 +105,35 @@ nav.scrolled {padding:15px 50px;background:rgba(0,0,0,0.95);box-shadow:0 10px 40
 .btn {padding:14px 35px;border-radius:50px;font-size:15px;font-weight:500;text-decoration:none;transition:all 0.4s cubic-bezier(0.4,0,0.2,1);cursor:pointer;display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden}
 .btn::before {content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;background:rgba(255,255,255,0.2);transition:width 0.8s cubic-bezier(0.4,0,0.2,1),height 0.8s cubic-bezier(0.4,0,0.2,1);transform:translate(-50%,-50%)}
 .btn:hover::before {width:400px;height:400px}
+.btn::after {content:'';position:absolute;inset:0;border-radius:50px;background:linear-gradient(45deg,transparent,rgba(255,255,255,0.1),transparent);transform:translateX(-100%);transition:transform 0.6s}
+.btn:hover::after {transform:translateX(100%)}
 .btn svg {transition:transform 0.3s}
-.btn:hover svg {transform:scale(1.1)}
+.btn:hover svg {transform:scale(1.1) rotate(5deg)}
 .btn-primary {background:var(--primary);color:white;border:none;box-shadow:0 4px 15px rgba(0,113,227,0.2)}
-.btn-primary:hover {background:#0077ed;transform:translateY(-3px);box-shadow:0 15px 35px rgba(0,113,227,0.4)}
+.btn-primary:hover {background:#0077ed;transform:translateY(-3px) scale(1.05);box-shadow:0 15px 35px rgba(0,113,227,0.4)}
 .btn-secondary {background:transparent;color:var(--primary);border:1.5px solid var(--primary)}
-.btn-secondary:hover {background:var(--primary);color:white;transform:translateY(-3px);box-shadow:0 15px 35px rgba(0,113,227,0.3)}
+.btn-secondary:hover {background:var(--primary);color:white;transform:translateY(-3px) scale(1.05);box-shadow:0 15px 35px rgba(0,113,227,0.3)}
 
-.section {padding:80px 50px;max-width:1400px;margin:0 auto;opacity:0;transform:translateY(40px);transition:all 1s cubic-bezier(0.4,0,0.2,1)}
+.section {padding:80px 50px;max-width:1400px;margin:0 auto;opacity:0;transform:translateY(40px);transition:all 1s cubic-bezier(0.4,0,0.2,1);position:relative}
+.section::before {content:'';position:absolute;top:0;left:0;width:2px;height:0;background:linear-gradient(180deg,var(--primary),transparent);transition:height 1s cubic-bezier(0.4,0,0.2,1) 0.3s}
 .section.visible {opacity:1;transform:translateY(0)}
+.section.visible::before {height:100%}
 .section-header {text-align:center;margin-bottom:50px}
 .section-tag {color:var(--primary);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;display:inline-block;position:relative;padding-bottom:10px}
-.section-tag::after {content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--primary);transition:all 0.6s cubic-bezier(0.4,0,0.2,1);transform:translateX(-50%)}
+.section-tag::after {content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--primary);transition:all 0.6s cubic-bezier(0.4,0,0.2,1);transform:translateX(-50%);box-shadow:0 0 10px var(--primary)}
 .section.visible .section-tag::after {width:60px}
-.section-title {font-size:clamp(32px,5vw,48px);font-weight:700;margin-bottom:15px;color:white}
+.section-title {font-size:clamp(32px,5vw,48px);font-weight:700;margin-bottom:15px;color:white;position:relative;display:inline-block}
+.section-title::after {content:attr(data-text);position:absolute;left:0;top:0;color:var(--primary);opacity:0;transform:translateY(10px);transition:all 0.5s}
+.section.visible .section-title:hover::after {opacity:0.2;transform:translateY(0)}
 
 .exp-grid {display:grid;gap:25px}
-.exp-card {background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:35px;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden}
+.exp-card {background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:35px;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;opacity:0;transform:translateX(-30px)}
+.section.visible .exp-card {animation:slideInRight 0.8s cubic-bezier(0.4,0,0.2,1) forwards}
+.section.visible .exp-card:nth-child(1) {animation-delay:0.1s}
+.section.visible .exp-card:nth-child(2) {animation-delay:0.2s}
+.section.visible .exp-card:nth-child(3) {animation-delay:0.3s}
+.section.visible .exp-card:nth-child(4) {animation-delay:0.4s}
+@keyframes slideInRight {to{opacity:1;transform:translateX(0)}}
 .exp-card::before {content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,113,227,0.08),transparent);transition:left 0.8s cubic-bezier(0.4,0,0.2,1)}
 .exp-card::after {content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:linear-gradient(45deg,var(--primary),transparent,var(--primary));border-radius:20px;opacity:0;transition:opacity 0.5s;z-index:-1}
 .exp-card:hover::before {left:100%}
@@ -105,12 +143,12 @@ nav.scrolled {padding:15px 50px;background:rgba(0,0,0,0.95);box-shadow:0 10px 40
 .exp-left {flex:1}
 .exp-company-wrapper {display:flex;align-items:center;gap:15px;margin-bottom:12px}
 .company-logo {width:45px;height:45px;object-fit:contain;background:white;padding:5px;border-radius:8px;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);box-shadow:0 4px 15px rgba(0,0,0,0.2)}
-.exp-card:hover .company-logo {transform:scale(1.15) rotate(8deg);box-shadow:0 8px 25px rgba(0,113,227,0.3)}
+.exp-card:hover .company-logo {transform:scale(1.15) rotate(8deg);box-shadow:0 8px 25px rgba(0,113,227,0.3);filter:brightness(1.1)}
 .exp-title {font-size:22px;font-weight:600;margin-bottom:5px;color:white;transition:color 0.3s}
-.exp-card:hover .exp-title {color:var(--primary)}
+.exp-card:hover .exp-title {color:var(--primary);text-shadow:0 0 20px rgba(0,113,227,0.5)}
 .exp-company {color:var(--secondary);font-size:15px;transition:color 0.3s}
 .exp-card:hover .exp-company {color:#a8a8a8}
-.exp-date {color:var(--secondary);font-size:13px;white-space:nowrap;transition:all 0.3s}
+.exp-date {color:var(--secondary);font-size:13px;white-space:nowrap;transition:all 0.3s;position:relative}
 .exp-card:hover .exp-date {color:var(--primary)}
 .exp-card ul {list-style:none;padding:0}
 .exp-card li {color:var(--secondary);margin-bottom:10px;padding-left:20px;position:relative;line-height:1.6;font-size:15px;opacity:0.8;transform:translateX(-5px);transition:all 0.4s cubic-bezier(0.4,0,0.2,1)}
@@ -124,17 +162,21 @@ nav.scrolled {padding:15px 50px;background:rgba(0,0,0,0.95);box-shadow:0 10px 40
 .exp-card:hover li:before {width:8px;height:8px;top:7px;box-shadow:0 0 10px var(--primary)}
 
 .edu-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(450px,1fr));gap:25px}
-.edu-card {background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:35px;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);position:relative}
+.edu-card {background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:35px;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);position:relative;opacity:0;transform:scale(0.9)}
+.section.visible .edu-card {animation:scaleIn 0.8s cubic-bezier(0.4,0,0.2,1) forwards}
+.section.visible .edu-card:nth-child(1) {animation-delay:0.1s}
+.section.visible .edu-card:nth-child(2) {animation-delay:0.2s}
+@keyframes scaleIn {to{opacity:1;transform:scale(1)}}
 .edu-card::after {content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:linear-gradient(135deg,var(--primary),transparent,var(--primary));background-size:200% 200%;border-radius:20px;opacity:0;transition:all 0.6s;z-index:-1;animation:gradientRotate 6s ease infinite}
 @keyframes gradientRotate {0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 .edu-card:hover::after {opacity:0.4}
 .edu-card:hover {transform:translateY(-10px) scale(1.01);box-shadow:0 25px 60px rgba(0,113,227,0.2)}
 .edu-logo {width:55px;height:55px;object-fit:contain;background:white;padding:7px;border-radius:10px;margin-bottom:20px;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);box-shadow:0 4px 15px rgba(0,0,0,0.2)}
-.edu-card:hover .edu-logo {transform:scale(1.15) translateY(-5px);box-shadow:0 8px 25px rgba(0,113,227,0.3)}
+.edu-card:hover .edu-logo {transform:scale(1.15) translateY(-5px) rotate(-5deg);box-shadow:0 8px 25px rgba(0,113,227,0.3);filter:brightness(1.1)}
 .edu-institution {font-size:20px;font-weight:600;margin-bottom:10px;color:white;transition:color 0.3s}
 .edu-card:hover .edu-institution {color:var(--primary)}
 .edu-degree {color:var(--primary);font-size:17px;font-weight:600;margin-bottom:8px;transition:all 0.3s}
-.edu-card:hover .edu-degree {transform:translateX(5px)}
+.edu-card:hover .edu-degree {transform:translateX(5px);text-shadow:0 0 10px rgba(0,113,227,0.5)}
 .edu-period {color:var(--secondary);font-size:13px;margin-bottom:15px}
 .edu-description {color:var(--secondary);line-height:1.7;font-size:15px;margin-bottom:12px;transition:color 0.3s}
 .edu-card:hover .edu-description {color:#a8a8a8}
@@ -142,7 +184,12 @@ nav.scrolled {padding:15px 50px;background:rgba(0,0,0,0.95);box-shadow:0 10px 40
 .edu-card:hover .edu-highlights {color:#a8a8a8}
 
 .skills-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
-.skill-card {background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:30px;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden}
+.skill-card {background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:30px;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;opacity:0;transform:translateY(20px)}
+.section.visible .skill-card {animation:fadeInUp 0.8s cubic-bezier(0.4,0,0.2,1) forwards}
+.section.visible .skill-card:nth-child(1) {animation-delay:0.1s}
+.section.visible .skill-card:nth-child(2) {animation-delay:0.2s}
+.section.visible .skill-card:nth-child(3) {animation-delay:0.3s}
+.section.visible .skill-card:nth-child(4) {animation-delay:0.4s}
 .skill-card::before {content:'';position:absolute;top:0;left:0;width:3px;height:0;background:linear-gradient(180deg,var(--primary),transparent);border-radius:3px;transition:height 0.5s cubic-bezier(0.4,0,0.2,1)}
 .skill-card::after {content:'';position:absolute;bottom:0;right:0;width:0;height:3px;background:linear-gradient(90deg,transparent,var(--primary));border-radius:3px;transition:width 0.5s cubic-bezier(0.4,0,0.2,1)}
 .skill-card:hover::before {height:100%}
@@ -164,12 +211,19 @@ nav.scrolled {padding:15px 50px;background:rgba(0,0,0,0.95);box-shadow:0 10px 40
 .skill-item:hover:before {width:10px;height:10px;top:5px;box-shadow:0 0 10px var(--primary)}
 
 .cert-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:25px}
-.cert-card {background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:40px 35px;text-align:center;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);position:relative}
+.cert-card {background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:40px 35px;text-align:center;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);position:relative;opacity:0}
+.section.visible .cert-card {animation:bounceIn 0.8s cubic-bezier(0.4,0,0.2,1) forwards}
+.section.visible .cert-card:nth-child(1) {animation-delay:0.1s}
+.section.visible .cert-card:nth-child(2) {animation-delay:0.2s}
+.section.visible .cert-card:nth-child(3) {animation-delay:0.3s}
+.section.visible .cert-card:nth-child(4) {animation-delay:0.4s}
+@keyframes bounceIn {0%{opacity:0;transform:scale(0.3)}50%{transform:scale(1.05)}70%{transform:scale(0.9)}100%{opacity:1;transform:scale(1)}}
 .cert-card::before {content:'';position:absolute;inset:0;border-radius:20px;padding:2px;background:linear-gradient(135deg,var(--primary),transparent,var(--primary));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity 0.5s}
 .cert-card:hover::before {opacity:1}
 .cert-card:hover {transform:translateY(-12px) scale(1.03);border-color:rgba(0,113,227,0.5);box-shadow:0 25px 60px rgba(0,113,227,0.2)}
 .cert-icon {font-size:48px;margin-bottom:20px;display:inline-block;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);filter:grayscale(0.3)}
-.cert-card:hover .cert-icon {transform:scale(1.3) rotate(15deg);filter:grayscale(0) drop-shadow(0 0 20px rgba(0,113,227,0.5))}
+.cert-card:hover .cert-icon {transform:scale(1.3) rotate(15deg);filter:grayscale(0) drop-shadow(0 0 20px rgba(0,113,227,0.5));animation:wiggle 0.5s ease}
+@keyframes wiggle {0%,100%{transform:scale(1.3) rotate(15deg)}25%{transform:scale(1.3) rotate(20deg)}75%{transform:scale(1.3) rotate(10deg)}}
 .cert-title {font-size:18px;font-weight:600;margin-bottom:8px;color:white;transition:color 0.3s}
 .cert-card:hover .cert-title {color:var(--primary)}
 .cert-issuer {color:var(--secondary);font-size:14px;transition:color 0.3s}
@@ -178,14 +232,19 @@ nav.scrolled {padding:15px 50px;background:rgba(0,0,0,0.95);box-shadow:0 10px 40
 .contact {background:var(--card-bg);padding:100px 50px;text-align:center;border-top:1px solid var(--border);position:relative;overflow:hidden}
 .contact::before {content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(0,113,227,0.06),transparent 70%);animation:rotate 25s linear infinite;pointer-events:none}
 @keyframes rotate {from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.contact h2 {font-size:clamp(32px,5vw,48px);font-weight:700;margin-bottom:15px;color:white;position:relative;z-index:1}
+.contact h2 {font-size:clamp(32px,5vw,48px);font-weight:700;margin-bottom:15px;color:white;position:relative;z-index:1;animation:textGlow 3s ease-in-out infinite}
+@keyframes textGlow {0%,100%{text-shadow:0 0 10px rgba(0,113,227,0.3)}50%{text-shadow:0 0 30px rgba(0,113,227,0.6)}}
 .contact p {color:var(--secondary);font-size:18px;max-width:700px;margin:0 auto 40px;line-height:1.6;position:relative;z-index:1}
 
-footer {padding:35px;text-align:center;color:var(--secondary);border-top:1px solid var(--border);font-size:14px;transition:color 0.3s}
-footer:hover {color:var(--primary)}
+footer {padding:35px;text-align:center;color:var(--secondary);border-top:1px solid var(--border);font-size:14px;transition:all 0.3s}
+footer p {transition:all 0.3s}
+footer:hover p {color:var(--primary);transform:scale(1.05)}
 
 /* Smooth scroll progress bar */
-.progress-bar {position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),#00f2fe);z-index:9999;transition:width 0.1s}
+.progress-bar {position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),#00f2fe);z-index:9999;transition:width 0.1s;box-shadow:0 0 10px var(--primary)}
+
+/* Parallax sections */
+.parallax-section {transform:translateY(var(--scroll))}
 
 @media (max-width:768px) {
 nav {padding:15px 20px}
@@ -194,13 +253,20 @@ nav {padding:15px 20px}
 .skills-grid,.cert-grid {grid-template-columns:1fr}
 .exp-header {flex-direction:column}
 .edu-grid {grid-template-columns:1fr}
-.particles,.grid-bg,.lines,.cursor-glow {display:none}
+.particles,.grid-bg,.lines,.cursor-glow,.floating-icons,.dots-pattern {display:none}
 }
 </style>
 </head>
 <body>
 <div class="cursor-glow"></div>
 <div class="progress-bar"></div>
+<div class="floating-icons">
+<div class="float-icon">📊</div>
+<div class="float-icon">💼</div>
+<div class="float-icon">📈</div>
+<div class="float-icon">💰</div>
+<div class="float-icon">🎯</div>
+</div>
 
 <nav>
 <div class="logo">MS</div>
@@ -216,6 +282,7 @@ nav {padding:15px 20px}
 <section class="hero">
 <div class="hero-bg"></div>
 <div class="grid-bg"></div>
+<div class="dots-pattern"></div>
 <div class="lines">
 <div class="line"></div>
 <div class="line"></div>
@@ -254,22 +321,22 @@ Download CV
 </div>
 </section>
 
-<section id="about" class="section">
+<section id="about" class="section parallax-section">
 <div class="section-header">
 <div class="section-tag">About Me</div>
-<h2 class="section-title">Building Value Through Finance</h2>
+<h2 class="section-title" data-text="Building Value Through Finance">Building Value Through Finance</h2>
 </div>
 <div style="max-width:800px;margin:0 auto;color:var(--secondary);font-size:17px;line-height:1.8">
 <p style="margin-bottom:20px">Currently pursuing MSc in Quantitative Finance at UCD Michael Smurfit Graduate Business School with focus on derivatives pricing, quantitative methods, and financial analysis. Actively seeking opportunities in derivatives trading, quantitative analysis, and financial risk management.</p>
 <p style="margin-bottom:20px">Previously at Standard Chartered, specialized in OTC derivatives operations across US, EU, and APAC markets, processing 300+ monthly trades with 98% accuracy. Expertise in cross-border settlement, trade reconciliation, and operational risk management across equities and fixed income instruments.</p>
-<p>CMA-certified with 4+ years of progressive experience in financial operations, seeking to leverage quantitative skills and operational expertise in front-office or middle-office roles.</p>
+<p>CMA-certified with 2.5+ years of progressive experience in financial operations, seeking to leverage quantitative skills and operational expertise in front-office or middle-office roles.</p>
 </div>
 </section>
 
-<section id="experience" class="section">
+<section id="experience" class="section parallax-section">
 <div class="section-header">
 <div class="section-tag">Professional Experience</div>
-<h2 class="section-title">Career Journey</h2>
+<h2 class="section-title" data-text="Career Journey">Career Journey</h2>
 </div>
 <div class="exp-grid">
 
@@ -361,10 +428,10 @@ Download CV
 </div>
 </section>
 
-<section id="education" class="section">
+<section id="education" class="section parallax-section">
 <div class="section-header">
 <div class="section-tag">Education</div>
-<h2 class="section-title">Academic Background</h2>
+<h2 class="section-title" data-text="Academic Background">Academic Background</h2>
 </div>
 <div class="edu-grid">
 
@@ -389,10 +456,10 @@ Download CV
 </div>
 </section>
 
-<section id="skills" class="section">
+<section id="skills" class="section parallax-section">
 <div class="section-header">
 <div class="section-tag">Expertise</div>
-<h2 class="section-title">Skills & Competencies</h2>
+<h2 class="section-title" data-text="Skills & Competencies">Skills & Competencies</h2>
 </div>
 <div class="skills-grid">
 
@@ -444,10 +511,10 @@ Download CV
 </div>
 </section>
 
-<section class="section">
+<section class="section parallax-section">
 <div class="section-header">
 <div class="section-tag">Credentials</div>
-<h2 class="section-title">Certifications & Recognition</h2>
+<h2 class="section-title" data-text="Certifications & Recognition">Certifications & Recognition</h2>
 </div>
 <div class="cert-grid">
 
@@ -526,6 +593,16 @@ const scrolled=(window.scrollY/scrollHeight)*100;
 progressBar.style.width=scrolled+'%';
 });
 
+// Parallax effect
+const parallaxSections=document.querySelectorAll('.parallax-section');
+window.addEventListener('scroll',()=>{
+const scrolled=window.pageYOffset;
+parallaxSections.forEach((section,index)=>{
+const speed=0.05*(index+1);
+section.style.setProperty('--scroll',`${scrolled*speed}px`);
+});
+});
+
 // Scroll animations
 const sections=document.querySelectorAll('.section');
 const observer=new IntersectionObserver((entries)=>{
@@ -551,6 +628,16 @@ const target=document.querySelector(this.getAttribute('href'));
 if(target){
 target.scrollIntoView({behavior:'smooth',block:'start'});
 }
+});
+});
+
+// Add hover effect to cards
+document.querySelectorAll('.exp-card, .edu-card, .skill-card, .cert-card').forEach(card=>{
+card.addEventListener('mouseenter',function(){
+this.style.transform='scale(1.02)';
+});
+card.addEventListener('mouseleave',function(){
+this.style.transform='';
 });
 });
 </script>
